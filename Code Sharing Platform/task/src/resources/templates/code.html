@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Code</title>
+    <style>
+        pre {
+            margin-top: 2px;
+            font-family: "Lucida Console", monospace;
+            width: 45%;
+            padding: 10px 15px 10px 15px;
+            background-color: rgb(240, 240, 240);
+            border: 2px solid gray;
+            line-height: 1.8em;
+            font-size: 16px;
+        }
+
+        span {
+            font-family: "Lucida Console", monospace;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
 </head>
 <body>
-<span id="load_date" th:utext="${date}">Date</span>
+<span id="load_date" th:text="${date}">Date</span>
 <pre id="code_snippet" th:text="${code}"></pre>
 </body>
 </html>
