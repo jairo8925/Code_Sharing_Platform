@@ -1,6 +1,10 @@
 package platform;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,5 +38,12 @@ public class Controller {
                 "code", code.getCode(),
                 "date", date.getDate()
         );
+    }
+
+    @PostMapping("/api/code/new")
+    public ResponseEntity<EmptyJsonObject> createNewCode(@RequestBody Code code, HttpServletResponse response) {
+        response.addHeader("Content-Type", "application/json");
+        this.code.setCode(code.getCode());
+        return new ResponseEntity<>(new EmptyJsonObject(), HttpStatus.OK);
     }
 }

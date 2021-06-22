@@ -316,6 +316,9 @@ files:
 - name: src/platform/Date.java
   visible: true
   learner_created: true
+- name: src/platform/EmptyJsonObject.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/130/stages/693/implement#comment
 status: Failed
 record: 1
