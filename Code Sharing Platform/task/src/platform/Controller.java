@@ -1,22 +1,17 @@
 package platform;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 @RestController
 public class Controller {
 
-    private static Code code = new Code("public static void main(String[] args) {\n" +
-            "    SpringApplication.run(CodeSharingPlatform.class, args);\n" +
-            "}");
+    private static final Code code = new Code(Code.STARTER_CODE);
 
     @GetMapping(value = "/code", produces = "text/html")
     public ModelAndView getCodeAsHtml() {
@@ -27,21 +22,19 @@ public class Controller {
     }
 
     @GetMapping(value = "/api/code", produces = "application/json")
-    public Map<String, ?> getCodeAsJson() {
-        return Map.of(
-                "code", code.getCode(),
-                "date", code.getDate()
-        );
-    }
-
-    @PostMapping(value = "/api/code/new", produces = "application/json", consumes = "application/json")
-    public String createApiCode(@RequestBody Code code) {
-        Controller.code = code;
-        return "{}";
+    public Code getCodeAsJson() {
+        return code;
     }
 
     @GetMapping("/code/new")
-    public ModelAndView createCode() {
+    public ModelAndView getNewCode() {
         return new ModelAndView("create");
     }
+
+    @PostMapping(value = "/api/code/new", produces = "application/json")
+    public EmptyJsonObject updateCode(@RequestBody Code code) {
+        Controller.code.setCode(code.getCode());
+        return new EmptyJsonObject();
+    }
+
 }
