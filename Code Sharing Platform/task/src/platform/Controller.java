@@ -14,36 +14,34 @@ import java.util.Map;
 @RestController
 public class Controller {
 
-    private Date date = new Date();
-    private final Code code = new Code("public static void main(String[] args) {\n" +
+    private static Code code = new Code("public static void main(String[] args) {\n" +
             "    SpringApplication.run(CodeSharingPlatform.class, args);\n" +
             "}");
 
-    @GetMapping("/code")
-    public ModelAndView getCodeAsHtml(HttpServletResponse response) {
-        date = new Date();
-        response.addHeader("Content-Type", "text/html");
-        ModelAndView model = new ModelAndView();
+    @GetMapping(value = "/code", produces = "text/html")
+    public ModelAndView getCodeAsHtml() {
+        ModelAndView model = new ModelAndView("index");
         model.addObject("code", code.getCode());
-        model.setViewName("code");
-        model.addObject("date", date.getDate());
+        model.addObject("date", code.getDate());
         return model;
     }
 
-    @GetMapping("/api/code")
-    public Map<String, ?> getCodeAsJson(HttpServletResponse response) {
-        date = new Date();
-        response.addHeader("Content-Type", "application/json");
+    @GetMapping(value = "/api/code", produces = "application/json")
+    public Map<String, ?> getCodeAsJson() {
         return Map.of(
                 "code", code.getCode(),
-                "date", date.getDate()
+                "date", code.getDate()
         );
     }
 
-    @PostMapping("/api/code/new")
-    public ResponseEntity<EmptyJsonObject> createNewCode(@RequestBody Code code, HttpServletResponse response) {
-        response.addHeader("Content-Type", "application/json");
-        this.code.setCode(code.getCode());
-        return new ResponseEntity<>(new EmptyJsonObject(), HttpStatus.OK);
+    @PostMapping(value = "/api/code/new", produces = "application/json", consumes = "application/json")
+    public String createApiCode(@RequestBody Code code) {
+        Controller.code = code;
+        return "{}";
+    }
+
+    @GetMapping("/code/new")
+    public ModelAndView createCode() {
+        return new ModelAndView("create");
     }
 }

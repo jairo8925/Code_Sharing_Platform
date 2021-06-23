@@ -105,20 +105,6 @@ files:
         }
     }
   learner_created: false
-- name: src/resources/templates/code.html
-  visible: true
-  text: |-
-    <!DOCTYPE html>
-    <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="UTF-8">
-        <title>Code</title>
-    </head>
-    <body>
-    <pre th:text="${code}"></pre>
-    </body>
-    </html>
-  learner_created: false
 - name: test/CodeSharingPlatformTest.java
   visible: false
   text: |
@@ -313,12 +299,18 @@ files:
         }
     }
   learner_created: false
-- name: src/platform/Date.java
-  visible: true
-  learner_created: true
 - name: src/platform/EmptyJsonObject.java
   visible: true
   learner_created: true
+- name: src/resources/templates/create.html
+  visible: true
+  learner_created: true
+- name: src/resources/templates/index.html
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/130/stages/693/implement#comment
-status: Failed
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Wed, 23 Jun 2021 06:59:02 UTC
 record: 1
