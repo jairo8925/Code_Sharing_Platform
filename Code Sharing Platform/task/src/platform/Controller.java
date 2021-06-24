@@ -18,17 +18,17 @@ public class Controller {
     }
 
     @GetMapping(value = "/code/{id}", produces = "text/html")
-    public ModelAndView getNthCodeAsHtml(@PathVariable(value = "id") int id) {
+    public ModelAndView getNthCodeAsHtml(@PathVariable(value = "id") String id) {
         ModelAndView model = new ModelAndView("index");
-        Code code = codeRepository.findById(id);
+        Code code = codeRepository.findByUniqueId(id);
         model.addObject("code", code.getCode());
         model.addObject("date", code.getDate());
         return model;
     }
 
     @GetMapping(value = "/api/code/{id}", produces = "application/json")
-    public Code getNthCodeAsJson(@PathVariable(value = "id") int id) {
-        return codeRepository.findById(id);
+    public Code getNthCodeAsJson(@PathVariable(value = "id") String id) {
+        return codeRepository.findByUniqueId(id);
     }
 
     @GetMapping(value = "/code/latest", produces = "text/html")
@@ -62,10 +62,12 @@ public class Controller {
 
     @PostMapping(value = "/api/code/new", produces = "application/json")
     public Map<String, ?> updateCode(@RequestBody Code code) {
-        Code newCode = new Code(code.getCode());
+        UUID uuid = UUID.randomUUID();
+        Code newCode = new Code(code.getCode(), code.getTime(), code.getViews(), uuid.toString());
         codeRepository.save(newCode);
+        System.out.println(newCode.getUniqueId());
         return Map.of(
-                "id", String.valueOf(newCode.getId())
+                "id", String.valueOf(newCode.getUniqueId())
         );
     }
 
