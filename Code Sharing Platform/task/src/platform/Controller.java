@@ -38,7 +38,10 @@ public class Controller {
         List<Code> latestSnippets = new ArrayList<>();
         int size = Math.min(snippets.size(), 10);
         for (int i = 0; i < size; i++) {
-            latestSnippets.add(snippets.get(snippets.size() - 1 - i));
+            Code code = snippets.get(snippets.size() - 1 - i);
+            if (!code.isTimeRestricted() && !code.isViewsRestricted()) {
+                latestSnippets.add(code);
+            }
         }
         model.addObject("snippets", latestSnippets);
         return model;
@@ -50,7 +53,10 @@ public class Controller {
         List<Code> latestSnippets = new ArrayList<>();
         int size = Math.min(snippets.size(), 10);
         for (int i = 0; i < size; i++) {
-            latestSnippets.add(snippets.get(snippets.size() - 1 - i));
+            Code code = snippets.get(snippets.size() - 1 - i);
+            if (!code.isTimeRestricted() && !code.isViewsRestricted()) {
+                latestSnippets.add(code);
+            }
         }
         return latestSnippets;
     }
@@ -63,8 +69,6 @@ public class Controller {
     @PostMapping(value = "/api/code/new", produces = "application/json")
     public Map<String, ?> updateCode(@RequestBody Code code) {
         UUID uuid = UUID.randomUUID();
-        System.out.println("Time: " + code.getTime());
-        System.out.println("Views: " + code.getViews());
         Code newCode = new Code(code.getCode(), code.getTime(), code.getViews(), uuid.toString());
         codeRepository.save(newCode);
         System.out.println(newCode.getUniqueId());
