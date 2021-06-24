@@ -34,9 +34,7 @@ public class Code {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(int id) {}
 
     public String getCode() {
         return code;
@@ -52,13 +50,5 @@ public class Code {
         this.date = dt.format(FORMATTER);
     }
 
-    @Override
-    public String toString() {
-        return "Code{" +
-                "code='" + code + '\'' +
-                ", date='" + date + '\'' +
-                ", id=" + id +
-                '}';
-    }
 }
 
