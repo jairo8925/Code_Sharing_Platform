@@ -1,8 +1,19 @@
 function send() {
+
+    var time = parseInt(document.getElementById("time_restriction").value);
+    if(document.getElementById("time_restriction").value.length == 0) {
+        time = 0;
+    }
+
+    var views = parseInt(document.getElementById("views_restriction").value);
+    if(document.getElementById("views_restriction").value.length == 0) {
+        views = 0;
+    }
+
     let object = {
         "code": document.getElementById("code_snippet").value,
-        "time": parseInt(document.getElementById("time_restriction").value),
-        "views": parseInt(document.getElementById("views_restriction").value)
+        "time": time,
+        "views": views
     };
 
     let json = JSON.stringify(object);

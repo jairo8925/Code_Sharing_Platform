@@ -3,13 +3,10 @@ package platform;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.UUID;
 
 @Entity
 public class Code {
@@ -26,13 +23,9 @@ public class Code {
     private String date;
 
     @JsonProperty("time")
-    @Column(name = "time")
-    @NotNull
     private int time;
 
     @JsonProperty("views")
-    @Column(name = "views")
-    @NotNull
     private int views;
 
     @JsonIgnore

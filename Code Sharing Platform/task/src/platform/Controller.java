@@ -63,6 +63,8 @@ public class Controller {
     @PostMapping(value = "/api/code/new", produces = "application/json")
     public Map<String, ?> updateCode(@RequestBody Code code) {
         UUID uuid = UUID.randomUUID();
+        System.out.println("Time: " + code.getTime());
+        System.out.println("Views: " + code.getViews());
         Code newCode = new Code(code.getCode(), code.getTime(), code.getViews(), uuid.toString());
         codeRepository.save(newCode);
         System.out.println(newCode.getUniqueId());
