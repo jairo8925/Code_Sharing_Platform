@@ -126,51 +126,6 @@ files:
         }
     }
   learner_created: false
-- name: src/resources/templates/code.html
-  visible: true
-  text: |-
-    <!DOCTYPE html>
-    <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="UTF-8">
-        <title>Code</title>
-    </head>
-    <body>
-    <span id="load_date" th:utext="${date}">Date</span>
-    <pre id="code_snippet" th:text="${code}"></pre>
-    </body>
-    </html>
-  learner_created: false
-- name: src/platform/Date.java
-  visible: true
-  text: |
-    package platform;
-
-    import org.apache.tomcat.jni.Local;
-
-    import java.time.LocalDateTime;
-    import java.time.format.DateTimeFormatter;
-
-    public class Date {
-
-        private static final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss";
-        private String date;
-
-        public Date() {
-            LocalDateTime dt = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
-            this.date = dt.format(formatter);
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        public void setDate(String date) {
-            this.date = date;
-        }
-    }
-  learner_created: false
 - name: test/CodeSharingPlatformTest.java
   visible: false
   text: |
@@ -534,6 +489,104 @@ files:
         }
     }
   learner_created: false
+- name: src/resources/templates/index.html
+  visible: true
+  text: |-
+    <!DOCTYPE html>
+    <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Code</title>
+        <style>
+            pre {
+                margin-top: 2px;
+                font-family: "Lucida Console", monospace;
+                width: 45%;
+                padding: 10px 15px 10px 15px;
+                background-color: rgb(240, 240, 240);
+                border: 2px solid gray;
+                line-height: 1.8em;
+                font-size: 16px;
+            }
+
+            span {
+                font-family: "Lucida Console", monospace;
+                font-size: 18px;
+                color: green;
+            }
+        </style>
+    </head>
+    <body>
+    <span id="load_date" th:text="${date}"></span>
+    <pre id="code_snippet" th:text="${code}"></pre>
+    </body>
+    </html>
+  learner_created: true
+- name: src/platform/EmptyJsonObject.java
+  visible: true
+  text: |
+    package platform;
+
+    import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+    @JsonSerialize
+    public class EmptyJsonObject { }
+  learner_created: true
+- name: src/resources/templates/create.html
+  visible: true
+  text: |-
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Create</title>
+        <script language="JavaScript">
+            function send() {
+                let object = {
+                    "code": document.getElementById("code_snippet").value
+                };
+
+                let json = JSON.stringify(object);
+
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", '/api/code/new', false)
+                xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+                xhr.send(json);
+
+                if (xhr.status == 200) {
+                    alert("Success!");
+                }
+            }
+        </script>
+        <style>
+            html {
+                margin: 10px;
+            }
+
+            textarea {
+                font-family: "Lucida Console", monospace;
+                line-height: 1.8em;
+                font-size: 14px;
+                margin-bottom: 15px;
+                width: 65em;
+                height: 18em;
+                padding: 10px 15px 10px 15px;
+            }
+
+            button {
+                font-family: "Lucida Console", monospace;
+                padding: 12px 25px;
+            }
+        </style>
+    </head>
+    <body>
+    <form>
+        <textarea id="code_snippet" class="code"> //write your code here </textarea> <br>
+        <button id="send_snippet" type="submit" onclick="send()">Submit</button>
+    </form>
+    </body>
+    </html>
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/130/stages/694/implement#comment
 status: Unchecked
 record: -1

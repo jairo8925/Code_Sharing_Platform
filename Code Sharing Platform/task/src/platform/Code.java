@@ -18,12 +18,24 @@ public class Code {
     @JsonProperty("date")
     private String date;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private int id;
+
     protected Code() {}
 
-    public Code(String code) {
-        this.code = code;
+    public Code(String code, int id) {
         LocalDateTime dt = LocalDateTime.now();
         this.date = dt.format(FORMATTER);
+        this.id = id;
+        this.code = code;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCode() {
