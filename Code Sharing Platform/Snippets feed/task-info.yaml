@@ -50,48 +50,6 @@ files:
     management.endpoints.web.exposure.include=*
     management.endpoint.shutdown.enabled=true
   learner_created: false
-- name: src/platform/Controller.java
-  visible: true
-  text: |
-    package platform;
-
-    import org.springframework.web.bind.annotation.GetMapping;
-    import org.springframework.web.bind.annotation.RestController;
-    import org.springframework.web.servlet.ModelAndView;
-
-    import javax.servlet.http.HttpServletResponse;
-    import java.util.Map;
-
-    @RestController
-    public class Controller {
-
-        private Date date = new Date();
-        private final Code code = new Code("public static void main(String[] args) {\n" +
-                "    SpringApplication.run(CodeSharingPlatform.class, args);\n" +
-                "}");
-
-        @GetMapping("/code")
-        public ModelAndView getCodeAsHtml(HttpServletResponse response) {
-            date = new Date();
-            response.addHeader("Content-Type", "text/html");
-            ModelAndView model = new ModelAndView();
-            model.addObject("code", code.getCode());
-            model.setViewName("code");
-            model.addObject("date", date.getDate());
-            return model;
-        }
-
-        @GetMapping("/api/code")
-        public Map<String, ?> getCodeAsJson(HttpServletResponse response) {
-            date = new Date();
-            response.addHeader("Content-Type", "application/json");
-            return Map.of(
-                    "code", code.getCode(),
-                    "date", date.getDate()
-            );
-        }
-    }
-  learner_created: false
 - name: src/platform/Code.java
   visible: true
   text: |
@@ -489,7 +447,19 @@ files:
         }
     }
   learner_created: false
-- name: src/resources/templates/index.html
+- name: src/resources/templates/latest.ftlh
+  visible: true
+  learner_created: true
+- name: src/resources/static/js/scripts.js
+  visible: true
+  learner_created: true
+- name: src/resources/static/css/styles.css
+  visible: true
+  learner_created: true
+- name: src/platform/Controller.java
+  visible: true
+  learner_created: true
+- name: src/resources/templates/index.ftlh
   visible: true
   text: |-
     <!DOCTYPE html>
@@ -522,7 +492,7 @@ files:
     </body>
     </html>
   learner_created: true
-- name: src/resources/templates/create.html
+- name: src/resources/templates/create.ftlh
   visible: true
   text: |-
     <!DOCTYPE html>
@@ -577,12 +547,9 @@ files:
     </body>
     </html>
   learner_created: true
-- name: src/resources/templates/latest.ftlh
-  visible: true
-  learner_created: true
 feedback_link: https://hyperskill.org/projects/130/stages/694/implement#comment
 status: Solved
 feedback:
   message: Congratulations!
-  time: Thu, 24 Jun 2021 02:59:56 UTC
+  time: Thu, 24 Jun 2021 06:38:24 UTC
 record: -1

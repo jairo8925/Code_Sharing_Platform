@@ -302,10 +302,10 @@ files:
 - name: src/platform/EmptyJsonObject.java
   visible: true
   learner_created: true
-- name: src/resources/templates/create.html
+- name: src/resources/templates/create.ftlh
   visible: true
   learner_created: true
-- name: src/resources/templates/index.html
+- name: src/resources/templates/index.ftlh
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/projects/130/stages/693/implement#comment
