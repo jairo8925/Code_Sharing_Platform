@@ -522,16 +522,6 @@ files:
     </body>
     </html>
   learner_created: true
-- name: src/platform/EmptyJsonObject.java
-  visible: true
-  text: |
-    package platform;
-
-    import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-    @JsonSerialize
-    public class EmptyJsonObject { }
-  learner_created: true
 - name: src/resources/templates/create.html
   visible: true
   text: |-
@@ -587,6 +577,12 @@ files:
     </body>
     </html>
   learner_created: true
+- name: src/resources/templates/latest.ftlh
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/130/stages/694/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Thu, 24 Jun 2021 02:59:56 UTC
 record: -1

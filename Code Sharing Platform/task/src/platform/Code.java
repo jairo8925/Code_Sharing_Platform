@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Code {
 
-    private static final String PATTERN = "yyyy-MM-dd HH:mm:ss";
+    private static final String PATTERN = "yyyy-MM-dd HH:mm:ss.SSS";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(PATTERN);
     public static final String STARTER_CODE = "public static void main(String[] args) {\n" +
             "    SpringApplication.run(CodeSharingPlatform.class, args);\n" +
@@ -52,5 +52,13 @@ public class Code {
         this.date = dt.format(FORMATTER);
     }
 
+    @Override
+    public String toString() {
+        return "Code{" +
+                "code='" + code + '\'' +
+                ", date='" + date + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }
 
