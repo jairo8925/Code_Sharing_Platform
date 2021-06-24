@@ -126,51 +126,6 @@ files:
         }
     }
   learner_created: false
-- name: src/resources/templates/code.html
-  visible: true
-  text: |-
-    <!DOCTYPE html>
-    <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="UTF-8">
-        <title>Code</title>
-    </head>
-    <body>
-    <span id="load_date" th:utext="${date}">Date</span>
-    <pre id="code_snippet" th:text="${code}"></pre>
-    </body>
-    </html>
-  learner_created: false
-- name: src/platform/Date.java
-  visible: true
-  text: |
-    package platform;
-
-    import org.apache.tomcat.jni.Local;
-
-    import java.time.LocalDateTime;
-    import java.time.format.DateTimeFormatter;
-
-    public class Date {
-
-        private static final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss";
-        private String date;
-
-        public Date() {
-            LocalDateTime dt = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
-            this.date = dt.format(formatter);
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        public void setDate(String date) {
-            this.date = date;
-        }
-    }
-  learner_created: false
 - name: test/CodeSharingPlatformTest.java
   visible: false
   text: |
@@ -755,6 +710,22 @@ files:
         }
     }
   learner_created: false
+- name: src/platform/CodeRepository.java
+  visible: true
+  text: "package platform;\n\nimport org.springframework.data.repository.CrudRepository;\n\
+    import org.springframework.stereotype.Repository;\n\nimport java.util.List;\n\n\
+    @Repository\npublic interface CodeRepository extends CrudRepository<Code, Integer>\
+    \ {\n    \n    Code findById(int id);\n\n    List<Code> findAll();\n}\n"
+  learner_created: true
+- name: src/resources/templates/create.ftlh
+  visible: true
+  learner_created: true
+- name: src/resources/templates/latest.ftlh
+  visible: true
+  learner_created: true
+- name: src/resources/templates/index.ftlh
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/130/stages/696/implement#comment
 status: Unchecked
 record: -1
