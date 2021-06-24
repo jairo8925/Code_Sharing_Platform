@@ -1,12 +1,27 @@
 html {
-    margin: 10px;
+    margin: 10px 40px 10px 40px;
+}
+
+h6 {
+    margin-bottom: 5px;
+    font-family: "Lucida Console", monospace;
+    font-size: 13pt;
+    font-weight: normal;
+}
+
+input {
+    height: 50px;
+    font-size: 16pt;
+    font-family: "Lucida Console", monospace;
+    text-align: center;
 }
 
 textarea {
     font-family: "Lucida Console", monospace;
     line-height: 1.8em;
-    font-size: 14px;
-    margin-bottom: 15px;
+    font-size: 15pt;
+    margin-top: 50px;
+    margin-bottom: 20px;
     width: 65em;
     height: 18em;
     padding: 10px 15px 10px 15px;

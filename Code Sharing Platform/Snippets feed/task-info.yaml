@@ -50,48 +50,6 @@ files:
     management.endpoints.web.exposure.include=*
     management.endpoint.shutdown.enabled=true
   learner_created: false
-- name: src/platform/Controller.java
-  visible: true
-  text: |
-    package platform;
-
-    import org.springframework.web.bind.annotation.GetMapping;
-    import org.springframework.web.bind.annotation.RestController;
-    import org.springframework.web.servlet.ModelAndView;
-
-    import javax.servlet.http.HttpServletResponse;
-    import java.util.Map;
-
-    @RestController
-    public class Controller {
-
-        private Date date = new Date();
-        private final Code code = new Code("public static void main(String[] args) {\n" +
-                "    SpringApplication.run(CodeSharingPlatform.class, args);\n" +
-                "}");
-
-        @GetMapping("/code")
-        public ModelAndView getCodeAsHtml(HttpServletResponse response) {
-            date = new Date();
-            response.addHeader("Content-Type", "text/html");
-            ModelAndView model = new ModelAndView();
-            model.addObject("code", code.getCode());
-            model.setViewName("code");
-            model.addObject("date", date.getDate());
-            return model;
-        }
-
-        @GetMapping("/api/code")
-        public Map<String, ?> getCodeAsJson(HttpServletResponse response) {
-            date = new Date();
-            response.addHeader("Content-Type", "application/json");
-            return Map.of(
-                    "code", code.getCode(),
-                    "date", date.getDate()
-            );
-        }
-    }
-  learner_created: false
 - name: src/platform/Code.java
   visible: true
   text: |
@@ -489,18 +447,112 @@ files:
         }
     }
   learner_created: false
-- name: src/resources/templates/index.ftlh
-  visible: true
-  learner_created: true
 - name: src/resources/templates/latest.ftlh
   visible: true
   learner_created: true
+- name: src/resources/static/js/scripts.js
+  visible: true
+  learner_created: true
+- name: src/resources/static/css/styles.css
+  visible: true
+  learner_created: true
+- name: src/platform/Controller.java
+  visible: true
+  learner_created: true
+- name: src/resources/templates/index.ftlh
+  visible: true
+  text: |-
+    <!DOCTYPE html>
+    <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Code</title>
+        <style>
+            pre {
+                margin-top: 2px;
+                font-family: "Lucida Console", monospace;
+                width: 45%;
+                padding: 10px 15px 10px 15px;
+                background-color: rgb(240, 240, 240);
+                border: 2px solid gray;
+                line-height: 1.8em;
+                font-size: 16px;
+            }
+
+            span {
+                font-family: "Lucida Console", monospace;
+                font-size: 18px;
+                color: green;
+            }
+        </style>
+    </head>
+    <body>
+    <span id="load_date" th:text="${date}"></span>
+    <pre id="code_snippet" th:text="${code}"></pre>
+    </body>
+    </html>
+  learner_created: true
 - name: src/resources/templates/create.ftlh
+  visible: true
+  text: |-
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Create</title>
+        <script language="JavaScript">
+            function send() {
+                let object = {
+                    "code": document.getElementById("code_snippet").value
+                };
+
+                let json = JSON.stringify(object);
+
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", '/api/code/new', false)
+                xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+                xhr.send(json);
+
+                if (xhr.status == 200) {
+                    alert("Success!");
+                }
+            }
+        </script>
+        <style>
+            html {
+                margin: 10px;
+            }
+
+            textarea {
+                font-family: "Lucida Console", monospace;
+                line-height: 1.8em;
+                font-size: 14px;
+                margin-bottom: 15px;
+                width: 65em;
+                height: 18em;
+                padding: 10px 15px 10px 15px;
+            }
+
+            button {
+                font-family: "Lucida Console", monospace;
+                padding: 12px 25px;
+            }
+        </style>
+    </head>
+    <body>
+    <form>
+        <textarea id="code_snippet" class="code"> //write your code here </textarea> <br>
+        <button id="send_snippet" type="submit" onclick="send()">Submit</button>
+    </form>
+    </body>
+    </html>
+  learner_created: true
+- name: src/platform/CodeRepository.java
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/projects/130/stages/694/implement#comment
 status: Solved
 feedback:
   message: Congratulations!
-  time: Thu, 24 Jun 2021 08:25:08 UTC
-record: 3
+  time: Thu, 24 Jun 2021 06:40:42 UTC
+record: 5

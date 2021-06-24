@@ -33,6 +33,12 @@ public class Code {
     @NotNull
     private String uniqueId;
 
+    @JsonIgnore
+    private boolean isTimeRestricted;
+
+    @JsonIgnore
+    private boolean isViewsRestricted;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonIgnore
@@ -43,9 +49,19 @@ public class Code {
     public Code(String code, int time, int views, String uniqueId) {
         this.date = LocalDateTime.now().format(FORMATTER);
         this.code = code;
-        this.time = time;
-        this.views = views;
+        this.time = Math.max(time, 0);
+        this.views = Math.max(views, 0);
         this.uniqueId = uniqueId;
+        this.isTimeRestricted = this.time != 0;
+        this.isViewsRestricted = this.views != 0;
+    }
+
+    public boolean isTimeRestricted() {
+        return isTimeRestricted;
+    }
+
+    public boolean isViewsRestricted() {
+        return isViewsRestricted;
     }
 
     public int getId() {
