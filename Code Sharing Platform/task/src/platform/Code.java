@@ -37,22 +37,13 @@ public class Code {
         return id;
     }
 
-    public void setId(int id) {}
-
     public String getCode() {
         return code;
-    }
-
-    public void setCode(String code) {
-        this.date = LocalDateTime.now().format(FORMATTER);
-        this.code = code;
     }
 
     public String getDate() {
         return date;
     }
-
-    public void setDate(String date) {}
 
 }
 
