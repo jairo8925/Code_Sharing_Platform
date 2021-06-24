@@ -1,9 +1,15 @@
 package platform;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Entity
 public class Code {
 
     private static final String PATTERN = "yyyy-MM-dd HH:mm:ss";
@@ -15,14 +21,15 @@ public class Code {
     @JsonProperty("date")
     private String date;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private int id;
 
     protected Code() {}
 
-    public Code(String code, int id) {
+    public Code(String code) {
         this.date = LocalDateTime.now().format(FORMATTER);
-        this.id = id;
         this.code = code;
     }
 
