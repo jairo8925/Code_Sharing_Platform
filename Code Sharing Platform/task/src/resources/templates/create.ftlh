@@ -8,7 +8,7 @@
 </head>
 <body>
 <form>
-    <textarea id="code_snippet"> // write your code here </textarea> <br>
+    <textarea id="code_snippet">// write your code here</textarea> <br>
     <button id="send_snippet" type="submit" onclick="send()">Submit</button>
 </form>
 </body>
