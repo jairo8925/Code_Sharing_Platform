@@ -8,9 +8,6 @@ public class Code {
 
     private static final String PATTERN = "yyyy-MM-dd HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(PATTERN);
-    public static final String STARTER_CODE = "public static void main(String[] args) {\n" +
-            "    SpringApplication.run(CodeSharingPlatform.class, args);\n" +
-            "}";
 
     @JsonProperty("code")
     private String code;
@@ -24,8 +21,7 @@ public class Code {
     protected Code() {}
 
     public Code(String code, int id) {
-        LocalDateTime dt = LocalDateTime.now();
-        this.date = dt.format(FORMATTER);
+        this.date = LocalDateTime.now().format(FORMATTER);
         this.id = id;
         this.code = code;
     }
@@ -40,15 +36,16 @@ public class Code {
         return code;
     }
 
+    public void setCode(String code) {
+        this.date = LocalDateTime.now().format(FORMATTER);
+        this.code = code;
+    }
+
     public String getDate() {
         return date;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-        LocalDateTime dt = LocalDateTime.now();
-        this.date = dt.format(FORMATTER);
-    }
+    public void setDate(String date) {}
 
 }
 
