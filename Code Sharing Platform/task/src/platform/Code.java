@@ -33,10 +33,8 @@ public class Code {
     @NotNull
     private String uniqueId;
 
-    @JsonIgnore
     private boolean isTimeRestricted;
 
-    @JsonIgnore
     private boolean isViewsRestricted;
 
     @Id
@@ -56,10 +54,12 @@ public class Code {
         this.isViewsRestricted = this.views != 0;
     }
 
+    @JsonIgnore
     public boolean isTimeRestricted() {
         return isTimeRestricted;
     }
 
+    @JsonIgnore
     public boolean isViewsRestricted() {
         return isViewsRestricted;
     }
@@ -106,6 +106,20 @@ public class Code {
 
     public void setViews(int views) {
         this.views = views;
+    }
+
+    @Override
+    public String toString() {
+        return "Code{" +
+                "code='" + code + '\'' +
+                ", date='" + date + '\'' +
+                ", time=" + time +
+                ", views=" + views +
+                ", uniqueId='" + uniqueId + '\'' +
+                ", isTimeRestricted=" + isTimeRestricted +
+                ", isViewsRestricted=" + isViewsRestricted +
+                ", id=" + id +
+                '}';
     }
 }
 
