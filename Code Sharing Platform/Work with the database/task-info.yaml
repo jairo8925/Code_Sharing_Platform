@@ -543,167 +543,21 @@ files:
         }
     }
   learner_created: false
-- name: src/platform/CodeRepository.java
-  visible: true
-  text: |
-    package platform;
-
-    import org.springframework.data.repository.CrudRepository;
-    import org.springframework.stereotype.Repository;
-
-    import java.util.List;
-
-    @Repository
-    public interface CodeRepository extends CrudRepository<Code, Integer> {
-
-        Code findById(int id);
-
-        Code findByUniqueId(String uuid);
-
-        List<Code> findAll();
-    }
-  learner_created: true
 - name: src/resources/templates/create.ftlh
   visible: true
-  text: |-
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Create</title>
-        <script src="/js/scripts.js"></script>
-        <link rel="stylesheet" href="/css/styles.css">
-    </head>
-    <body>
-    <form>
-        <input id="time_restriction" type="text"/>
-        <input id="views_restriction" type="text"/>
-        <textarea id="code_snippet">// write your code here</textarea> <br>
-        <button id="send_snippet" type="submit" onclick="send()">Submit</button>
-    </form>
-    </body>
-    </html>
-  learner_created: true
-- name: src/resources/static/js/scripts.js
-  visible: true
-  text: |-
-    function send() {
-
-        var time = parseInt(document.getElementById("time_restriction").value);
-        if(document.getElementById("time_restriction").value.length == 0) {
-            time = 0;
-        }
-
-        var views = parseInt(document.getElementById("views_restriction").value);
-        if(document.getElementById("views_restriction").value.length == 0) {
-            views = 0;
-        }
-
-        let object = {
-            "code": document.getElementById("code_snippet").value,
-            "time": time,
-            "views": views
-        };
-
-        let json = JSON.stringify(object);
-
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", '/api/code/new', false)
-        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-        xhr.send(json);
-
-        if (xhr.status == 200) {
-            alert("Success!");
-        }
-    }
   learner_created: true
 - name: src/resources/templates/latest.ftlh
   visible: true
-  text: |-
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Latest</title>
-        <link rel="stylesheet" href="/css/styles.css">
-        <link rel="stylesheet"
-               href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/default.min.css">
-        <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-    </head>
-    <body>
-        <#list snippets as snippet>
-            <div>
-                <span id="load_date">${snippet.date}</span>
-                <pre id="code_snippet"><code class="language-java">${snippet.code}</code></pre>
-            </div>
-        </#list>
-    </body>
-    </html>
   learner_created: true
 - name: src/resources/templates/index.ftlh
   visible: true
-  text: |-
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Code</title>
-        <link rel="stylesheet" href="/css/styles.css">
-        <link rel="stylesheet"
-               href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/default.min.css">
-        <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-    </head>
-    <body>
-        <span id="load_date">${date}</span>
-        <pre id="code_snippet"><code class="language-java">${code}</code></pre>
-    </body>
-    </html>
   learner_created: true
-- name: src/resources/static/css/styles.css
+- name: src/platform/CodeRepository.java
   visible: true
-  text: |-
-    html {
-        margin: 10px;
-    }
-
-    textarea {
-        font-family: "Lucida Console", monospace;
-        line-height: 1.8em;
-        font-size: 14px;
-        margin-bottom: 15px;
-        width: 65em;
-        height: 18em;
-        padding: 10px 15px 10px 15px;
-    }
-
-    button {
-        font-family: "Lucida Console", monospace;
-        padding: 12px 25px;
-    }
-
-    pre {
-        margin-top: 2px;
-        font-family: "Lucida Console", monospace;
-        width: 45%;
-        padding: 10px 15px 10px 15px;
-        background-color: rgb(240, 240, 240);
-        border: 2px solid gray;
-        line-height: 1.8em;
-        font-size: 16px;
-    }
-
-    span {
-        font-family: "Lucida Console", monospace;
-        font-size: 18px;
-        color: green;
-    }
-
-    div {
-        margin: 15px 5px 30px 5px;
-    }
   learner_created: true
 feedback_link: https://hyperskill.org/projects/130/stages/695/implement#comment
 status: Solved
-record: 6
+feedback:
+  message: Congratulations!
+  time: Thu, 24 Jun 2021 09:30:41 UTC
+record: 4

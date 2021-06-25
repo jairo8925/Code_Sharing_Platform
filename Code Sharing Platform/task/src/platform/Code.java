@@ -1,8 +1,6 @@
 package platform;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,28 +12,16 @@ public class Code {
     private static final String PATTERN = "yyyy-MM-dd HH:mm:ss";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(PATTERN);
 
-    @JsonProperty("code")
-    @NotNull
     private String code;
-
-    @JsonProperty("date")
-    @NotNull
     private String date;
-
-    @JsonProperty("time")
     private int time;
-
-    @JsonProperty("views")
     private int views;
 
+    private boolean timeRestricted;
+    private boolean viewsRestricted;
+
     @JsonIgnore
-    @Column(length = 36)
-    @NotNull
     private String uniqueId;
-
-    private boolean isTimeRestricted;
-
-    private boolean isViewsRestricted;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -50,18 +36,18 @@ public class Code {
         this.time = Math.max(time, 0);
         this.views = Math.max(views, 0);
         this.uniqueId = uniqueId;
-        this.isTimeRestricted = this.time != 0;
-        this.isViewsRestricted = this.views != 0;
+        this.timeRestricted = this.time != 0;
+        this.viewsRestricted = this.views != 0;
     }
 
     @JsonIgnore
     public boolean isTimeRestricted() {
-        return isTimeRestricted;
+        return timeRestricted;
     }
 
     @JsonIgnore
     public boolean isViewsRestricted() {
-        return isViewsRestricted;
+        return viewsRestricted;
     }
 
     public int getId() {
@@ -106,20 +92,6 @@ public class Code {
 
     public void setViews(int views) {
         this.views = views;
-    }
-
-    @Override
-    public String toString() {
-        return "Code{" +
-                "code='" + code + '\'' +
-                ", date='" + date + '\'' +
-                ", time=" + time +
-                ", views=" + views +
-                ", uniqueId='" + uniqueId + '\'' +
-                ", isTimeRestricted=" + isTimeRestricted +
-                ", isViewsRestricted=" + isViewsRestricted +
-                ", id=" + id +
-                '}';
     }
 }
 
