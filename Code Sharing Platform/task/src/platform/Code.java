@@ -20,13 +20,15 @@ public class Code {
     private boolean timeRestricted;
     private boolean viewsRestricted;
 
+    @Id
     @JsonIgnore
+    @Column(name = "id", nullable = false)
     private String uniqueId;
 
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonIgnore
-    private int id;
+    private int id;*/
 
     protected Code() {}
 
@@ -50,13 +52,13 @@ public class Code {
         return viewsRestricted;
     }
 
-    public int getId() {
+    /*public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
+    }*/
 
     public String getUniqueId() {
         return uniqueId;
