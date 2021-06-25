@@ -12,4 +12,6 @@ public interface CodeRepository extends CrudRepository<Code, Long> {
     Code findByUniqueId(String uuid);
 
     List<Code> findAll();
+
+    boolean existsByUniqueId(String uuid);
 }

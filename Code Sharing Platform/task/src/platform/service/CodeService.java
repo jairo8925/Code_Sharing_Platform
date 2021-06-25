@@ -47,11 +47,10 @@ public class CodeService {
     }
 
     public Code get(String id) {
-        Code code = codeRepository.findByUniqueId(id);
-        if (code == null) {
+        if (!codeRepository.existsByUniqueId(id)) {
             throw new CodeNotFoundException();
         }
-        return code;
+        return codeRepository.findByUniqueId(id);
     }
 
     public boolean hasExpired(Code code, LocalDateTime currentTime) {
