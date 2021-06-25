@@ -829,48 +829,6 @@ files:
         List<Code> findAll();
     }
   learner_created: true
-- name: src/platform/controller/Controller.java
-  visible: true
-  text: |
-    package platform;
-
-    import org.springframework.web.bind.annotation.GetMapping;
-    import org.springframework.web.bind.annotation.RestController;
-    import org.springframework.web.servlet.ModelAndView;
-
-    import javax.servlet.http.HttpServletResponse;
-    import java.util.Map;
-
-    @RestController
-    public class Controller {
-
-        private Date date = new Date();
-        private final Code code = new Code("public static void main(String[] args) {\n" +
-                "    SpringApplication.run(CodeSharingPlatform.class, args);\n" +
-                "}");
-
-        @GetMapping("/code")
-        public ModelAndView getCodeAsHtml(HttpServletResponse response) {
-            date = new Date();
-            response.addHeader("Content-Type", "text/html");
-            ModelAndView model = new ModelAndView();
-            model.addObject("code", code.getCode());
-            model.setViewName("code");
-            model.addObject("date", date.getDate());
-            return model;
-        }
-
-        @GetMapping("/api/code")
-        public Map<String, ?> getCodeAsJson(HttpServletResponse response) {
-            date = new Date();
-            response.addHeader("Content-Type", "application/json");
-            return Map.of(
-                    "code", code.getCode(),
-                    "date", date.getDate()
-            );
-        }
-    }
-  learner_created: false
 - name: src/platform/exceptions/CodeNotFoundException.java
   visible: true
   learner_created: true
@@ -888,5 +846,5 @@ status: Solved
 feedback:
   message: Well done! You finished the project. Select a new project on <a href="https://hyperskill.org/projects">JetBrains
     Academy</a> to continue learning.
-  time: Fri, 25 Jun 2021 22:00:47 UTC
+  time: Fri, 25 Jun 2021 22:06:56 UTC
 record: -1

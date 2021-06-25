@@ -28,7 +28,7 @@ public class ApiController {
         response.setContentType("application/json");
         Code code = codeService.get(id);
 
-        if (!codeService.isValid(code, currentTime)) {
+        if (codeService.hasExpired(code, currentTime)) {
             throw new CodeNotFoundException();
         }
 

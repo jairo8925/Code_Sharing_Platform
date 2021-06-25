@@ -29,8 +29,7 @@ public class HtmlController {
         response.setContentType("text/html");
         ModelAndView model = new ModelAndView("index");
         Code code = codeService.get(id);
-        if (!codeService.isValid(code, currentTime)) {
-            System.out.println("reached");
+        if (codeService.hasExpired(code, currentTime)) {
             throw new CodeNotFoundException();
         }
         model.addObject(code);

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class CodeNotFoundException extends RuntimeException {
 
     public CodeNotFoundException() {
-        super ("Code snippet not found");
+        super("Code snippet not found");
     }
 
     public CodeNotFoundException(String message) {

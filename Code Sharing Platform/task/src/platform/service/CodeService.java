@@ -25,7 +25,7 @@ public class CodeService {
 
     public String add(Code code) {
         UUID uuid = UUID.randomUUID();
-        System.out.println(uuid);
+        // System.out.println(uuid);
         Code newCode = new Code(code.getCode(), code.getTime(), code.getViews(), uuid.toString());
         codeRepository.save(newCode);
         return newCode.getUniqueId();
@@ -49,21 +49,20 @@ public class CodeService {
     public Code get(String id) {
         Code code = codeRepository.findByUniqueId(id);
         if (code == null) {
-            System.out.println("hi");
             throw new CodeNotFoundException();
         }
         return code;
     }
 
-    public boolean isValid(Code code, LocalDateTime currentTime) {
-        boolean isExpired = false;
+    public boolean hasExpired(Code code, LocalDateTime currentTime) {
+        boolean expired = false;
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime dateTime = LocalDateTime.parse(code.getDate(), formatter);
 
         if (code.isTimeRestricted()) {
             if (Duration.between(dateTime, currentTime).toSeconds() >= code.getTime()) {
-                isExpired = true;
+                expired = true;
                 codeRepository.delete(code);
             } else {
                 code.setTime((int) (code.getTime() - Duration.between(dateTime, currentTime).toSeconds()));
@@ -77,7 +76,7 @@ public class CodeService {
 
         if (code.isViewsRestricted()) {
             if (code.getViews() <= 0) {
-                isExpired = true;
+                expired = true;
                 codeRepository.delete(code);
             } else {
                 code.setViews(code.getViews() - 1);
@@ -88,7 +87,7 @@ public class CodeService {
             }
         }
 
-        return !isExpired;
+        return expired;
     }
 
 

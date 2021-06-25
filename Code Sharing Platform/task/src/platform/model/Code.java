@@ -30,11 +30,14 @@ public class Code {
     public Code(String code, int time, int views, String uniqueId) {
         this.date = LocalDateTime.now().format(FORMATTER);
         this.code = code;
+
         this.time = Math.max(time, 0);
         this.views = Math.max(views, 0);
+
         this.uniqueId = uniqueId;
-        this.timeRestricted = this.time != 0;
-        this.viewsRestricted = this.views != 0;
+
+        this.timeRestricted = this.time > 0;
+        this.viewsRestricted = this.views > 0;
     }
 
     @JsonIgnore
