@@ -32,19 +32,16 @@ public class CodeService {
     }
 
     public List<Code> getTenLatest() {
-        List<Code> snippets = codeRepository.findAll();
+        List<Code> snippets = codeRepository.findByTimeRestrictedFalseAndViewsRestrictedFalse();
         List<Code> latestSnippets = new ArrayList<>();
         int size = Math.min(snippets.size(), 10);
         for (int i = 0; i < size; i++) {
             Code code = snippets.get(snippets.size() - 1 - i);
-            if (!code.isTimeRestricted() && !code.isViewsRestricted()) {
-                latestSnippets.add(code);
-            } else {
-                size++;
-            }
+            latestSnippets.add(code);
         }
         return latestSnippets;
     }
+
 
     public Code get(String id) {
         if (!codeRepository.existsByUniqueId(id)) {
