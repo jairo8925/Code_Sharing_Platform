@@ -1,4 +1,4 @@
-package platform;
+package platform.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,11 +25,6 @@ public class Code {
     @Column(name = "id", nullable = false)
     private String uniqueId;
 
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
-    private int id;*/
-
     protected Code() {}
 
     public Code(String code, int time, int views, String uniqueId) {
@@ -51,14 +46,6 @@ public class Code {
     public boolean isViewsRestricted() {
         return viewsRestricted;
     }
-
-    /*public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }*/
 
     public String getUniqueId() {
         return uniqueId;

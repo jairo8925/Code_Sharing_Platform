@@ -16,7 +16,6 @@
     <content url="file://$MODULE_DIR$/../../../../Code Sharing Platform/task/src">
       <sourceFolder url="file://$MODULE_DIR$/../../../../Code Sharing Platform/task/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../../../Code Sharing Platform/task/src/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../../Code Sharing Platform/task/src/generated" isTestSource="false" generated="true" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
