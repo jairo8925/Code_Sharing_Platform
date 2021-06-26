@@ -1,6 +1,6 @@
 # Code Sharing Platform
 
-An application that allows users to create, share, and access code on the web.
+An application that allows users to create, share, and access code on the web. Code snippets are stored in the database and deleted if they have a time and/or views restriction that is met.
 
 ## API Endpoints
 * Get JSON of the code snippet given its id
