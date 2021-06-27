@@ -21,27 +21,46 @@ Returns the generated unique id of the code snippet
 
 
 ## Web Endpoints
-* Return HTML that contains the code snippet (and restrictions, if applicable) given its id
-\
-\
-```GET: /code/{id}```
-
-
-* Return HTML that contains the 10 most recently uploaded code snippets, ordered from newest to oldest
-\
-\
-```GET: /code/latest```
-
-
 * Return HTML that contains a text area for users to add a new code snippet, along with inputs for time and views restriction (optional)
 \
 \
 ```GET: /code/new```
 
+<br></br>
+
+![Alt text](images/create.png?raw=true "Create code")
+<br></br><br></br>
+
+* Return HTML that contains the code snippet (and restrictions, if applicable) given its id
+\
+\
+```GET: /code/{id}```
+
+<br></br>
+
+![Alt text](images/get.png?raw=true "Code snippet w/o restrictions")
+#### Code snippet without restrictions
+<br></br><br></br>
+
+
+![Alt text](images/get_with_restrictions.png?raw=true "Code snippet with restrictions")
+#### Code snippet with restrictions
+<br></br><br></br>
+
+* Return HTML that contains the 10 most recently uploaded code snippets (only contains snippets w/o restrictions), ordered from newest to oldest
+\
+\
+```GET: /code/latest```
+
+<br></br>
+
+![Alt text](images/latest.png?raw=true "Latest code snippets")
+<br></br><br></br>
 
 
 ## TODO
 
 * Add pictures of the application
 * Add a home page
+* Add pagination to GET: code/latest
 * Improve visual of web page
