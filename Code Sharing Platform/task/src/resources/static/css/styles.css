@@ -2,14 +2,25 @@ html {
     margin: 10px 40px 10px 40px;
 }
 
-h6 {
+h5 {
     margin-bottom: 5px;
     font-family: "Lucida Console", monospace;
     font-size: 13pt;
     font-weight: normal;
 }
 
-input {
+p {
+    font-size: 11pt;
+}
+
+#time_restriction {
+    height: 50px;
+    font-size: 16pt;
+    font-family: "Lucida Console", monospace;
+    text-align: center;
+}
+
+#views_restriction {
     height: 50px;
     font-size: 16pt;
     font-family: "Lucida Console", monospace;
@@ -32,18 +43,23 @@ button {
     padding: 12px 25px;
 }
 
+
 pre {
     margin-top: 2px;
     font-family: "Lucida Console", monospace;
     width: 45%;
     padding: 10px 15px 10px 15px;
-    background-color: rgb(240, 240, 240);
+    background-color: #FAFAFA;
     border: 2px solid gray;
     line-height: 1.8em;
-    font-size: 16px;
+    font-size: 16pt;
 }
 
-span {
+code {
+    font-size: 15pt;
+}
+
+#load_date {
     font-family: "Lucida Console", monospace;
     font-size: 18px;
     color: green;

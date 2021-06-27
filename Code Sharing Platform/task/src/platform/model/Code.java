@@ -23,43 +23,46 @@ public class Code {
     @Id
     @JsonIgnore
     @Column(name = "id", nullable = false)
-    private String uniqueId;
+    private String codeId;
 
     protected Code() {}
 
-    public Code(String code, int time, int views, String uniqueId) {
+    public Code(String code, int time, int views, String codeId) {
         this.date = LocalDateTime.now().format(FORMATTER);
         this.code = code;
 
         this.time = Math.max(time, 0);
         this.views = Math.max(views, 0);
 
-        this.uniqueId = uniqueId;
+        this.codeId = codeId;
 
         this.timeRestricted = this.time > 0;
         this.viewsRestricted = this.views > 0;
     }
 
-    @JsonIgnore
+
     public boolean isTimeRestricted() {
         return timeRestricted;
     }
 
-    @JsonIgnore
     public boolean isViewsRestricted() {
         return viewsRestricted;
     }
 
-    public String getUniqueId() {
-        return uniqueId;
+    public String getCodeId() {
+        return codeId;
     }
 
-    public void setUniqueId(String uuid) {
-        this.uniqueId = uuid;
+    public void setCodeId(String codeId) {
+        this.codeId = codeId;
     }
 
     public String getCode() {
         return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getDate() {

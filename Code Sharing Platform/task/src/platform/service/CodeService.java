@@ -25,10 +25,10 @@ public class CodeService {
 
     public String add(Code code) {
         UUID uuid = UUID.randomUUID();
-        // System.out.println(uuid);
+        System.out.println(uuid);
         Code newCode = new Code(code.getCode(), code.getTime(), code.getViews(), uuid.toString());
         codeRepository.save(newCode);
-        return newCode.getUniqueId();
+        return newCode.getCodeId();
     }
 
     public List<Code> getTenLatest() {
@@ -44,10 +44,10 @@ public class CodeService {
 
 
     public Code get(String id) {
-        if (!codeRepository.existsByUniqueId(id)) {
+        if (!codeRepository.existsByCodeId(id)) {
             throw new CodeNotFoundException();
         }
-        return codeRepository.findByUniqueId(id);
+        return codeRepository.findByCodeId(id);
     }
 
     public boolean hasExpired(Code code, LocalDateTime currentTime) {

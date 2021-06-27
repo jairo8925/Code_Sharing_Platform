@@ -7,13 +7,13 @@ import platform.model.Code;
 import java.util.List;
 
 @Repository
-public interface CodeRepository extends CrudRepository<Code, Long> {
+public interface CodeRepository extends CrudRepository<Code, String> {
 
-    Code findByUniqueId(String uuid);
+    Code findByCodeId(String codeId);
 
     List<Code> findAll();
 
-    boolean existsByUniqueId(String uuid);
+    boolean existsByCodeId(String codeId);
 
     List<Code> findByTimeRestrictedFalseAndViewsRestrictedFalse();
 }
