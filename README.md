@@ -26,8 +26,6 @@ Returns the generated unique id of the code snippet
 \
 ```GET: /code/new```
 
-<br></br>
-
 ![Alt text](images/create.png?raw=true "Create code")
 <br></br><br></br>
 
@@ -35,8 +33,6 @@ Returns the generated unique id of the code snippet
 \
 \
 ```GET: /code/{id}```
-
-<br></br>
 
 ![Alt text](images/get.png?raw=true "Code snippet w/o restrictions")
 #### Code snippet without restrictions
@@ -51,8 +47,6 @@ Returns the generated unique id of the code snippet
 \
 \
 ```GET: /code/latest```
-
-<br></br>
 
 ![Alt text](images/latest.png?raw=true "Latest code snippets")
 <br></br><br></br>
