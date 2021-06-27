@@ -60,7 +60,6 @@ Returns the generated unique id of the code snippet
 
 ## TODO
 
-* Add pictures of the application
 * Add a home page
 * Add pagination to GET: code/latest
 * Improve visual of web page
