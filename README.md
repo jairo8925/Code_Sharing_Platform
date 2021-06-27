@@ -47,7 +47,7 @@ Returns the generated unique id of the code snippet
 #### Code snippet with restrictions
 <br></br><br></br>
 
-* Return HTML that contains the 10 most recently uploaded code snippets (only contains snippets w/o restrictions), ordered from newest to oldest
+* Return HTML that contains the most recently uploaded code snippets (only contains snippets w/o restrictions), ordered from newest to oldest
 \
 \
 ```GET: /code/latest```
