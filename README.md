@@ -37,3 +37,11 @@ Returns the generated unique id of the code snippet
 \
 \
 ```GET: /code/new```
+
+
+
+## TODO
+
+* Add pictures of the application
+* Add a home page
+* Improve visual of web page
