@@ -1,0 +1,70 @@
+html {
+    margin: 10px 40px 10px 40px;
+}
+
+h5 {
+    margin-bottom: 5px;
+    font-family: "Lucida Console", monospace;
+    font-size: 13pt;
+    font-weight: normal;
+}
+
+p {
+    font-size: 11pt;
+}
+
+#time_restriction {
+    height: 50px;
+    font-size: 16pt;
+    font-family: "Lucida Console", monospace;
+    text-align: center;
+}
+
+#views_restriction {
+    height: 50px;
+    font-size: 16pt;
+    font-family: "Lucida Console", monospace;
+    text-align: center;
+}
+
+textarea {
+    font-family: "Lucida Console", monospace;
+    line-height: 1.8em;
+    font-size: 15pt;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    width: 65em;
+    height: 18em;
+    padding: 10px 15px 10px 15px;
+}
+
+button {
+    font-family: "Lucida Console", monospace;
+    padding: 12px 25px;
+}
+
+
+pre {
+    margin-top: 2px;
+    font-family: "Lucida Console", monospace;
+    width: 45%;
+    padding: 10px 15px 10px 15px;
+    background-color: #FAFAFA;
+    border: 2px solid gray;
+    line-height: 1.8em;
+    font-size: 16pt;
+}
+
+code {
+    font-size: 15pt;
+}
+
+#load_date {
+    font-family: "Lucida Console", monospace;
+    font-size: 18px;
+    color: green;
+}
+
+div {
+    margin: 15px 5px 30px 5px;
+}
